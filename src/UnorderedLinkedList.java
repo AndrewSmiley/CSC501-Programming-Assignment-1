@@ -6,5 +6,6 @@
  * This class like the ordered linked list extends our Base linked list which contains the constructor(s) and
  * members (size and head) as well as some generic linked list functions that will work on our variations of linked list.
  * Code smarter not harder
+ * honestly this class will be empty
  */
 public class UnorderedLinkedList extends  BaseLinkedList  {}

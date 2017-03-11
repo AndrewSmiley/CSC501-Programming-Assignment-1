@@ -17,7 +17,7 @@ public class Node {
      * One constructor for now, we want to create a node with a predetermined value
      * @param value the value of the node
      */
-    public Node(Object value) {
+    public Node(Integer value) {
 
         this.value = value;
     }
@@ -25,7 +25,7 @@ public class Node {
     /**
      *This is the value of the node (using object so we can use different types of variables with our linked lists
      */
-    private Object value;
+    private Integer value;
 
     /**
      * Get the next node
@@ -47,7 +47,7 @@ public class Node {
      * Get the value stored in this node
      * @return the value stored in this node
      */
-    public Object getValue() {
+    public Integer getValue() {
         return value;
     }
 
@@ -55,7 +55,7 @@ public class Node {
      * Set the value of this node
      * @param value the value to set
      */
-    public void setValue(Object value) {
+    public void setValue(Integer value) {
         this.value = value;
     }
 
@@ -66,4 +66,13 @@ public class Node {
     public Boolean hasNext(){
         return this.next != null;
     }
+
+
+
+
+//    public int compareTo(E o) {
+//        if(this.value.compareTo(o) ){
+//
+//        }
+//    }
 }

@@ -4,10 +4,22 @@
 public class BaseLinkedList {
     Node head;
     int size;
+    int operations;
+    public static final int VALUE_NOT_FOUND = 666;
+
+
+
+
     //overload the constructors
+
+    /**
+     * The default no-arg constructor
+     */
     public BaseLinkedList() {
         this.head = null;
         this.size = 0;
+        this.operations = 0;
+
     }
 
     /**
@@ -29,9 +41,29 @@ public class BaseLinkedList {
         return sb.toString();
     }
 
+    /**
+     * A constructor that will allow us to initiazlize this list with a default value
+     * @param head
+     */
     public BaseLinkedList(Node head) {
-
+        //set the head = the haed we passed in
         this.head = head;
+    }
+
+    /**
+     * Get the number of operations performed on the list
+     * @return the number of total operations
+     */
+    public int getOperations() {
+        return operations;
+    }
+
+    /**
+     * Set the number of operations
+     * @param operations the number of operatons to set
+     */
+    public void setOperations(int operations) {
+        this.operations = operations;
     }
     /**
      * Get the size of our linked list
@@ -66,7 +98,7 @@ public class BaseLinkedList {
      */
 
     public void clear() {
-        this.head = null; //just set the head to null to delete our nodes
+        this.head = null; //just set the head to null to deleteNth our nodes
         this.size = 0; //set size to 0 since our linked list is empty
     }
 
@@ -86,8 +118,9 @@ public class BaseLinkedList {
      *
      * @param value the value to add to our linked list
      */
-    public void add(Object value) {
+    public int  add(Integer value) {
         //handle the base case if our linked list is empty
+        this.size++;
         if(this.isEmpty()){
             this.head = new Node(value);
             size++; //increment the size because we've added an element
@@ -100,19 +133,20 @@ public class BaseLinkedList {
             currentNode.setNext(new Node(value));
             size++; //increment the size because we've added an element
         }
+        return 0;
     }
 
     /**
      * Delete a node at the index specified. Zero indexed of course
-     * @param index the index of the node we want to delete
+     * @param index the index of the node we want to deleteNth
      * @return  the number of operations we have done to execute the operation
      */
-    public int delete(int index){
+    public int deleteNth(int index){
         int operations = 0; //the number of steps it takes to perform this operation
         //first, check to make sure we are not deleting something outsize the bounds of our linked list
         //otherwise, throw an exception
         if(index >= this.size || index < 0){
-            throw new IndexOutOfBoundsException("The index you are trying to delete does not exist in this node");
+            throw new IndexOutOfBoundsException("The index you are trying to deleteNth does not exist in this node");
         }
         //if we are deleting the first node
         if(index == 0){
@@ -148,4 +182,32 @@ public class BaseLinkedList {
 
     }
 
+    public int sequentialSearch(int value){
+        Node currentNode = this.head;
+        int index = 0;
+        while(currentNode != null){
+            if(currentNode.getValue() == value){
+                return index; //return the index of the found value
+            }else{
+                //move to the next node in the series
+                currentNode = currentNode.next();
+                index++; //increase the index
+            }
+        }
+        return VALUE_NOT_FOUND;
+    }
+
+    /**
+     * Delete the value specified from the array, throw an exception if it does not exist
+     * @param value the value we want to delete
+     */
+    public void delete(Integer value){
+        int index =this.sequentialSearch(value);
+        if(index != VALUE_NOT_FOUND){
+            this.deleteNth(index);
+        }else{
+            System.out.println("Value "+value+" not found in "+getClass().getName());
+        }
+
+    }
 }
