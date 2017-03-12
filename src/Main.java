@@ -23,19 +23,12 @@ public class Main {
             while ((line = br.readLine()) != null) {
 
                 if (lineCount == 1) {
-//                    all   = new ArrayOrderedList(Integer.parseInt(line));
                     size = Integer.parseInt(line);
                     numbers = new Integer[size];
                     lineCount++;
 
                 } else {
-                    //just a stupid thing to add all of our numbers to
-//                    if(lineCount < size/2){
                     numbers[lineCount - 2] = Integer.parseInt(line);
-//                    }
-//                    oll.add(Integer.parseInt(line));
-//                    ull.add(Integer.parseInt(line));
-//                    all.add(Integer.parseInt(line));
                     lineCount++;
                 }
             }
@@ -50,17 +43,21 @@ public class Main {
         OrderedLinkedList oll = new OrderedLinkedList();
         ArrayOrderedList all = new ArrayOrderedList(size);
         //add the elements from our
+        int num = 1;
         for (Integer i : numbers) {
             oll.add(i);
             ull.add(i);
             all.add(i);
+            System.out.println(num);
+            num++;
         }
-        System.out.println(ull.toString());
-        ull.delete(1872238);
-        System.out.println(ull.toString());
-        System.out.println(oll.toString());
-        oll.delete(1872238);
-        System.out.println(oll.toString());
+        System.out.println(all.toString());
+
+//        ull.delete(1872238);
+//        System.out.println(ull.toString());
+//        System.out.println(oll.toString());
+//        oll.delete(1872238);
+//        System.out.println(oll.toString());
 //        int serachval = oll.sequentialSearch(4155);
 
 

@@ -5,7 +5,7 @@ public class BaseLinkedList {
     Node head;
     int size;
     int operations;
-    public static final int VALUE_NOT_FOUND = 666;
+    public static final int VALUE_NOT_FOUND = -666;
 
 
 
@@ -99,6 +99,8 @@ public class BaseLinkedList {
 
     public void clear() {
         this.head = null; //just set the head to null to deleteNth our nodes
+//        operations = operations+1;//increase operations for clearning the node
+        this.operations = 0;//reset operations
         this.size = 0; //set size to 0 since our linked list is empty
     }
 
@@ -109,7 +111,9 @@ public class BaseLinkedList {
      */
 
     public boolean isEmpty() {
+        operations = operations+1;//add one operation because we compare values
         return this.head == null; //make it simple, ternary!
+
     }
 
 
@@ -118,22 +122,39 @@ public class BaseLinkedList {
      *
      * @param value the value to add to our linked list
      */
-    public int  add(Integer value) {
+    public void  add(Integer value) {
         //handle the base case if our linked list is empty
-        this.size++;
         if(this.isEmpty()){
             this.head = new Node(value);
+            operations = operations+1;//increase the size of operations because we've added a new node
             size++; //increment the size because we've added an element
         }else{
             Node currentNode = this.head; //get the head of the linked list
+            operations = operations+1;//increase size of operations for fetching the first node
             //just walk the linked list to get the last node
             while (currentNode.hasNext()){
-                currentNode = currentNode.next();
+                currentNode = currentNode.next();//move toward the end
+                operations = operations+1;//increase operations for moving to next node
             }
-            currentNode.setNext(new Node(value));
+            currentNode.setNext(new Node(value));//append to the tail
+            operations = operations+1;//increase operations because we had to set a new node
             size++; //increment the size because we've added an element
         }
-        return 0;
+//        return 0;
+
+//        //handle the base case if our linked list is empty
+//        if(this.isEmpty()){
+//            this.head = new Node(value);
+//            size++; //increment the size because we've added an element
+//        }else{
+//            Node currentNode = this.head; //get the head of the linked list
+//            //just walk the linked list to get the last node
+//            while (currentNode.hasNext()){
+//                currentNode = currentNode.next();
+//            }
+//            currentNode.setNext(new Node(value));
+//            size++; //increment the size because we've added an element
+//        }
     }
 
     /**
@@ -141,8 +162,8 @@ public class BaseLinkedList {
      * @param index the index of the node we want to deleteNth
      * @return  the number of operations we have done to execute the operation
      */
-    public int deleteNth(int index){
-        int operations = 0; //the number of steps it takes to perform this operation
+    public void deleteNth(int index){
+//        int operations = 0; //the number of steps it takes to perform this operation
         //first, check to make sure we are not deleting something outsize the bounds of our linked list
         //otherwise, throw an exception
         if(index >= this.size || index < 0){
@@ -152,49 +173,56 @@ public class BaseLinkedList {
         if(index == 0){
             if(this.head.next() == null){
                 this.head = null;
-                operations++; //increment the number of operations because we have to check the next node
+                operations = operations+1; //increment the number of operations because we have to check the next node
                 size --;//decrement size because we have removed the node
-                return  operations;
             }else {
                 this.head = this.head.next();
                 operations++; //increment the number of operations because we have to check the next node
                 size --;//decrement size because we have removed the node
-                return operations;
             }
         }
 
         Node currentNode = this.head;//start at the top
-        for(int i = 0; i < index-1; i++, operations++){
+        for(int i = 0; i < index-1; i++, this.operations++){
 
             currentNode = currentNode.next(); // get the next element
+
             if (currentNode == null){
                 throw  new IndexOutOfBoundsException("Trying to access an index that does not exist. Is something wrong with your linked list?");
             }
         }
         //once we have our current node, we can get hte next one and the one after that
         Node nextNode = currentNode.next();
-        operations ++; //increment operations because we have to ge the next now
+        this.operations ++; //increment operations because we have to ge the next now
         currentNode.setNext(nextNode.next()); //from here, just attach the next node to the next node of our current operating node
-        operations++;//increment operations because we have to now set the new node
-        operations++;// increment operations because we have to grab the next of the next
-        size--;
-        return operations;
-
+        operations = operations+1;//increment operations because we have to now set the new node
+        operations = operations+1;// increment operations because we have to grab the next of the next
+        this.size--;
     }
 
+    /**
+     * This is our sequential search function. Find the index of the specified value, return VALUE_NOT_FOUND
+     * if the element does not exist in the list
+     * @param value the value to search for
+     * @return the index of the element we were searching for
+     */
     public int sequentialSearch(int value){
-        Node currentNode = this.head;
-        int index = 0;
+        Node currentNode = this.head; //start at the head
+        operations = operations+1;//increase operations for this assignment
+        int index = 0; //this is our current working index like if we were iterating over an array
+        //traverse the nodes
         while(currentNode != null){
-            if(currentNode.getValue() == value){
+            operations = operations+1;//increase operations for the comparison
+            if(currentNode.getValue() == value){ //if the node we are on contains the value we want, then we return the index
                 return index; //return the index of the found value
             }else{
                 //move to the next node in the series
                 currentNode = currentNode.next();
+                operations = operations+1;//increase operations for moving to the next
                 index++; //increase the index
             }
         }
-        return VALUE_NOT_FOUND;
+        return VALUE_NOT_FOUND; //if not found, return the error code
     }
 
     /**
@@ -202,11 +230,11 @@ public class BaseLinkedList {
      * @param value the value we want to delete
      */
     public void delete(Integer value){
-        int index =this.sequentialSearch(value);
-        if(index != VALUE_NOT_FOUND){
-            this.deleteNth(index);
+        int index =this.sequentialSearch(value); //first, find the index of the element
+        if(index != VALUE_NOT_FOUND){ //next, confirm that we were able to find it
+            this.deleteNth(index); //delete the element at that index
         }else{
-            System.out.println("Value "+value+" not found in "+getClass().getName());
+            System.out.println("Value "+value+" not found in "+getClass().getName()); //if it's not found, let's provide some feedback
         }
 
     }

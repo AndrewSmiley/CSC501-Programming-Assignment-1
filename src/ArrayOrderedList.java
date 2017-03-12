@@ -10,6 +10,7 @@ public class ArrayOrderedList {
 
     /**
      * Get the array of the linked list
+     *
      * @return
      */
     public Integer[] getList() {
@@ -18,6 +19,7 @@ public class ArrayOrderedList {
 
     /**
      * Set the array of the list
+     *
      * @param list the array we want to utilize
      */
     public void setList(Integer[] list) {
@@ -26,6 +28,7 @@ public class ArrayOrderedList {
 
     /**
      * Get the size of the list
+     *
      * @return the size of the list
      */
     public int getSize() {
@@ -34,6 +37,7 @@ public class ArrayOrderedList {
 
     /**
      * Set the size of the list
+     *
      * @param size the size to set
      */
     public void setSize(int size) {
@@ -42,15 +46,16 @@ public class ArrayOrderedList {
 
     /**
      * Single arg constuctor to preallocate the number of elements in the inner array
+     *
      * @param s
      */
     public ArrayOrderedList(int s) {
-        if(s<=0) {
-            s=100;
+        if (s <= 0) {
+            s = 100;
         }
-        this.size=0;
+        this.size = 0;
 //        this.
-        this.list= new Integer[s];
+        this.list = new Integer[s];
     }
 
     /**
@@ -61,43 +66,44 @@ public class ArrayOrderedList {
 
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return this.size == 0;
     }
 
     /**
      * This method allows us to add a value to our current array
+     *
      * @param value the value to add
      */
-    public void add(Integer value){
+    public void add(Integer value) {
         //before we do anything, clear the operations
         this.operations = 0;
         //if we are addixng to an empty list just add the first element
 
-        if(this.isEmpty()){
-            this.list[0]  = value;
+        if (this.isEmpty()) {
+            this.list[0] = value;
             this.operations++;//increase number of operations by 1;
             this.size++; //increase size by 1 because we've added an element
 //            return this.operations;
-        }else{
+        } else {
             //we can simplify this one by doing the shift and the traversal in one step
             int i;
-            for( i = size-1; i >= 0; i--){
+            for (i = size - 1; i >= 0; i--) {
                 //if the value is greater than the index we are looking at, go ahead and assign it
-                if (value>= this.list[i]){
-                    this.list[i+1]=value;//since we can assume that we've already done the shifting
+                if (value >= this.list[i]) {
+                    this.list[i + 1] = value;//since we can assume that we've already done the shifting
                     this.operations++;//increase operations since we did the assignment
                     size++;
                     return;
-                }else{
+                } else {
                     //otherwise, shift and move on
-                    this.list[i+1] = this.list[i];
+                    this.list[i + 1] = this.list[i];
                     operations++;//increase operations because we just did a shift
                 }
             }
             //the value is smaller that the smallest item in the array, go ahead and put it first
-            if(i==-1){
-                this.list[i+1]=value;
+            if (i == -1) {
+                this.list[i + 1] = value;
                 operations++;//increase operations
                 size++;
             }
@@ -109,15 +115,43 @@ public class ArrayOrderedList {
 
     /**
      * Binary search functon that calls the built-in binarySearch function from Java's Array class.
+     *
      * @param value the value we wish to search from
      * @return the zero-indexed index of the value we want
      */
-    public int binarySearch(Integer value){
-        return Arrays.binarySearch(this.list,value);
+//    public int binarySearch(Integer value) {
+//        return Arrays.binarySearch(this.list, value);
+//    }
+
+    /**
+     * Java method to perform recursive binary search. It accept an integer array * and a number and return the index of number in the array. If number doesn't * exists in array then it return -1 * * @param input * @param number * @return index of given number in array or -1 if not found
+     */
+    public int recursiveBinarySearch(int value) {
+        return binarySearch(this.list, 0, this.list.length - 1, value);
     }
 
     /**
+     * internal method which implement recursive binary search algorithm * * @param array * @param start * @param end * @param target * @return index of target element or -1 if not found
+     */
+    private int binarySearch(Integer[] list, int start, int end, int value) {
+        int middle = (start + end) / 2;
+        if (end < start) {
+            return BaseLinkedList.VALUE_NOT_FOUND;
+        }
+        if (value == list[middle]) {
+            return middle;
+        } else if (value < list[middle]) {
+            return binarySearch(list, start, middle - 1, value);
+        } else {
+            return binarySearch(list, middle + 1, end, value);
+        }
+    }
+
+//    Read more: http://www.java67.com/2016/10/binary-search-using-recursion-in-java.html#ixzz4b4Esf6IR
+
+    /**
      * Function to write the contents of our list to the screen
+     *
      * @return
      */
     @Override
@@ -125,21 +159,23 @@ public class ArrayOrderedList {
 
         //just itereate through and append them to a string
         StringBuilder sb = new StringBuilder();
-        for(int i = 0; i < this.size; i++){
-            sb.append(this.list[i]+" ");
+        for (int i = 0; i < this.size; i++) {
+            sb.append(this.list[i] + " ");
 
         }
         return sb.toString();
     }
+
     /**
      * Just a simple function to validate that the order of our elements is correct
+     *
      * @return true if the order is valid, false otherwise
      */
-    public boolean validate(){
+    public boolean validate() {
         //iterate through n-1 where n = this.size and validate that i-1< i
         Integer lastValue = this.list[0];
-        for(int i = 0; i < this.size; i++){
-            if(lastValue > this.list[i]){
+        for (int i = 0; i < this.size; i++) {
+            if (lastValue > this.list[i]) {
                 return false;
             }
             lastValue = this.list[i];
@@ -149,9 +185,10 @@ public class ArrayOrderedList {
 
     /**
      * Delete the element residing at the given index
+     *
      * @param index
      */
-    public void deleteIndex(int index){
+    public void deleteIndex(int index) {
 
     }
 

@@ -3,8 +3,8 @@
  */
 public class OrderedLinkedList extends BaseLinkedList {
     @Override
-    public int  add(Integer value) {
-        int operations = 0; //the number of operations this will take
+    public void add(Integer value) {
+//        int operations = 0; //the number of operations this will take
         this.size++;
         //handle the base case if our linked list is empty
         //this is the same as the other one
@@ -15,29 +15,28 @@ public class OrderedLinkedList extends BaseLinkedList {
             Node currentNode = this.head; //get the head of the linked list
             while (currentNode.hasNext() && (currentNode.next().getValue() < value)){
                 currentNode = currentNode.next();
-                operations++; // increase operations because we have to traverse the node
+                this.operations++; // increase operations because we have to traverse the node
             }
             Node newNode = new Node(value);
             if(currentNode == this.head){
                 if(currentNode.getValue() > value){
                     newNode.setNext(currentNode);
-                    operations++; //increase operations because we shift the ndoe
+                    this.operations++; //increase operations because we shift the ndoe
                     this.head = newNode;
-                    operations++; //increase operations because we shift the ndoe
-                    return operations;
+
                 }else{
                     newNode.setNext(currentNode.next());
                     currentNode.setNext(newNode);
-                    operations++; //increase operations because we shift the ndoe
-                    return operations;
+                    this.operations++; //increase operations because we shift the ndoe
+
                 }
             }
             newNode.setNext(currentNode.next());
-            operations++; //increase operations because we shift the ndoe
+            this.operations++; //increase operations because we shift the ndoe
             currentNode.setNext(newNode);
-            operations++; // increase becasue we compelte the shift
+            this.operations++; // increase becasue we compelte the shift
         }
-        return operations;
+//        return operations;
     }
 
     /**
@@ -58,13 +57,5 @@ public class OrderedLinkedList extends BaseLinkedList {
 
         return true;
     }
-
-//    public int binarySearch(Integer value, OrderedLinkedList list){
-//        if(list.getSize() == 1){
-//
-//        }
-//
-//        return 0;
-//    }
 
 }
