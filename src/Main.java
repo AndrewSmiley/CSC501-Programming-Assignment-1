@@ -2,16 +2,16 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+//import java.nio.file.Path;
+//import java.nio.file.Paths;
 
 public class Main {
 
     public static void main(String[] args) {
         System.out.println("Hello World!");
-        Path currentRelativePath = Paths.get("");
-        String s = currentRelativePath.toAbsolutePath().toString();
-        System.out.println("Current relative path is: " + s);
+//        Path currentRelativePath = Paths.get("");
+//        String s = currentRelativePath.toAbsolutePath().toString();
+//        System.out.println("Current relative path is: " + s);
 
         Integer numbers[] = null;
         int size = 0;
@@ -42,17 +42,15 @@ public class Main {
         UnorderedLinkedList ull = new UnorderedLinkedList();
         OrderedLinkedList oll = new OrderedLinkedList();
         ArrayOrderedList all = new ArrayOrderedList(size);
-        //add the elements from our
-        int num = 1;
+
         for (Integer i : numbers) {
             oll.add(i);
             ull.add(i);
             all.add(i);
-            System.out.println(num);
-            num++;
         }
+        System.out.println(oll.toString());
         System.out.println(all.toString());
-
+        System.out.println(ull.toString());
 //        ull.delete(1872238);
 //        System.out.println(ull.toString());
 //        System.out.println(oll.toString());
