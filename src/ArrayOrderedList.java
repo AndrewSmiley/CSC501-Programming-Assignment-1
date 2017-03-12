@@ -6,6 +6,23 @@ import java.util.Arrays;
 public class ArrayOrderedList {
     private Integer list[];
     private int size;
+
+    /**
+     * Get our operations
+     * @return the number of operations
+     */
+    public int getOperations() {
+        return operations;
+    }
+
+    /**
+     * Set the number of operations
+     * @param operations the number of operations to set
+     */
+    public void setOperations(int operations) {
+        this.operations = operations;
+    }
+
     private int operations;
 
     /**
@@ -77,19 +94,20 @@ public class ArrayOrderedList {
      */
     public void add(Integer value) {
         //before we do anything, clear the operations
-        this.operations = 0;
+//        this.operations = 0;
         //if we are addixng to an empty list just add the first element
 
         if (this.isEmpty()) {
             this.list[0] = value;
             this.operations++;//increase number of operations by 1;
             this.size++; //increase size by 1 because we've added an element
-//            return this.operations;
+
         } else {
             //we can simplify this one by doing the shift and the traversal in one step
             int i;
             for (i = size - 1; i >= 0; i--) {
                 //if the value is greater than the index we are looking at, go ahead and assign it
+                this.operations++;//increase operations because we are doing a value check
                 if (value >= this.list[i]) {
                     this.list[i + 1] = value;//since we can assume that we've already done the shifting
                     this.operations++;//increase operations since we did the assignment

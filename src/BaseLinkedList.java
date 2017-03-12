@@ -126,18 +126,18 @@ public class BaseLinkedList {
         //handle the base case if our linked list is empty
         if(this.isEmpty()){
             this.head = new Node(value);
-            operations = operations+1;//increase the size of operations because we've added a new node
+            operations++;// = operations+1;//increase the size of operations because we've added a new node
             size++; //increment the size because we've added an element
         }else{
             Node currentNode = this.head; //get the head of the linked list
-            operations = operations+1;//increase size of operations for fetching the first node
+            operations++;// = operations+1;//increase size of operations for fetching the first node
             //just walk the linked list to get the last node
             while (currentNode.hasNext()){
                 currentNode = currentNode.next();//move toward the end
                 operations = operations+1;//increase operations for moving to next node
             }
             currentNode.setNext(new Node(value));//append to the tail
-            operations = operations+1;//increase operations because we had to set a new node
+            operations++;// = operations+1;//increase operations because we had to set a new node
             size++; //increment the size because we've added an element
         }
 //        return 0;
@@ -173,7 +173,7 @@ public class BaseLinkedList {
         if(index == 0){
             if(this.head.next() == null){
                 this.head = null;
-                operations = operations+1; //increment the number of operations because we have to check the next node
+                operations++;//= operations+1; //increment the number of operations because we have to check the next node
                 size --;//decrement size because we have removed the node
             }else {
                 this.head = this.head.next();

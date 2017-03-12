@@ -48,21 +48,19 @@ public class Main {
             ull.add(i);
             all.add(i);
         }
-        System.out.println(oll.toString());
-        System.out.println(all.toString());
-        System.out.println(ull.toString());
-//        ull.delete(1872238);
-//        System.out.println(ull.toString());
-//        System.out.println(oll.toString());
-//        oll.delete(1872238);
-//        System.out.println(oll.toString());
-//        int serachval = oll.sequentialSearch(4155);
+
+        System.out.println("Operations to insert "+size+" elements into OrderedLinkedList: "+oll.getOperations());
+        System.out.println("Operations to insert "+size+" elements into UnorderedLinkedList: "+ull.getOperations());
+        System.out.println("Operations to insert "+size+" elements into OrderedArrayList: "+all.getOperations()+"\n\n");
+        System.out.println("Validating our ordered lists....");
+        System.out.println("Validating OrderedLinkedList: "+oll.validate());
+        System.out.println("Validating OrderedArrayList: "+all.validate()+"\n\n");
+        System.out.println("Clearing our operations");
+        all.setOperations(0);
+        ull.setOperations(0);
+        oll.setOperations(0);
 
 
-//        System.out.println("Size of ALL: " + all.getSize());
-//        System.out.println(all.toString());
-//        System.out.println("Validity: "+all.validate());
-//        System.out.println("Index of 69696969: "+all.binarySearch(69696969));
-//        System.out.println(all.getList()[all.binarySearch(99634)]);
+
     }
 }
