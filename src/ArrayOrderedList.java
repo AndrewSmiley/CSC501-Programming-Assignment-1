@@ -153,9 +153,13 @@ public class ArrayOrderedList {
      */
     private int binarySearch(Integer[] list, int start, int end, int value) {
         int middle = (start + end) / 2;
+        this.operations++; //increase operations because we do this comparison
         if (end < start) {
             return BaseLinkedList.VALUE_NOT_FOUND;
         }
+        //increease operations because we do 2 comparisons
+        this.operations++;
+        this.operations++;
         if (value == list[middle]) {
             return middle;
         } else if (value < list[middle]) {
@@ -206,8 +210,24 @@ public class ArrayOrderedList {
      *
      * @param index
      */
-    public void deleteIndex(int index) {
+    public void deleteNth(int index) {
+        this.size--;
+        this.operations++; //increase operations because we nullify the element at the index
+        this.list[index] = null;
+        //next, shift all the elements
+        for(int i =index+1;  i < this.size; i++){
+            this.list[i-1]=this.list[i];
+            this.operations++;//increase operations because we shift each item
+        }
+    }
 
+    public void delete(int value){
+        int index = this.recursiveBinarySearch(value);
+        if(index != BaseLinkedList.VALUE_NOT_FOUND){
+            this.deleteNth(index);
+        }else{
+            System.out.println("Value "+value+" not found in "+getClass().getName()); //if it's not found, let's provide some feedback
+        }
     }
 
 }
