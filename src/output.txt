@@ -1,0 +1,83 @@
+###################################################################################
+#################################run on input2.txt#################################
+###################################################################################
+Adding our array elements to our lists....
+Operations to insert 200 elements into OrderedLinkedList: 20298
+Operations to insert 200 elements into UnorderedLinkedList: 20300
+Operations to insert 200 elements into OrderedArrayList: 399
+
+
+Validating our ordered lists....
+Validating OrderedLinkedList: true
+Validating OrderedArrayList: true
+
+
+Clearing our operations
+
+
+Deleting every 5th element from the original array in our lists....
+Operations to delete every 5th item from original array in OrderedLinkedList: 11739
+Operations to delete every 5th item from original array in UnorderedLinkedList: 9633
+Operations to delete every 5th item from original array in OrderedArrayList: 4641
+
+
+Validating our ordered lists....
+Validating OrderedLinkedList: true
+Validating OrderedArrayList: true
+
+
+Clearing our operations
+
+
+Searching for every element in the first half of our original array in our lists....
+Operations to find every element in the first half of our original array in OrderedLinkedList: 10000
+Operations to find every element in the first half of our original array in UnorderedLinkedList: 12779
+Operations to find every element in the first half of our original array in OrderedArrayList: 2101
+
+
+Final validation of our ordered lists....
+Validating OrderedLinkedList: true
+Validating OrderedArrayList: true
+
+
+###################################################################################
+#################################run on input3.txt#################################
+###################################################################################
+Adding our array elements to our lists....
+Operations to insert 50000 elements into OrderedLinkedList: 625160577
+Operations to insert 50000 elements into UnorderedLinkedList: 1250075000
+Operations to insert 50000 elements into OrderedArrayList: 1249904173
+
+
+Validating our ordered lists....
+Validating OrderedLinkedList: true
+Validating OrderedArrayList: true
+
+
+Clearing our operations
+
+
+Deleting every 5th element from the original array in our lists....
+Operations to delete every 5th item from original array in OrderedLinkedList: 753491013
+Operations to delete every 5th item from original array in UnorderedLinkedList: 600009993
+Operations to delete every 5th item from original array in OrderedArrayList: 224137421
+
+
+Validating our ordered lists....
+Validating OrderedLinkedList: true
+Validating OrderedArrayList: true
+
+
+Clearing our operations
+
+
+Searching for every element in the first half of our original array in our lists....
+Operations to find every element in the first half of our original array in OrderedLinkedList: 1247267646
+Operations to find every element in the first half of our original array in UnorderedLinkedList: 705277130
+Operations to find every element in the first half of our original array in OrderedArrayList: 1092077
+
+
+Final validation of our ordered lists....
+Validating OrderedLinkedList: true
+Validating OrderedArrayList: true
+

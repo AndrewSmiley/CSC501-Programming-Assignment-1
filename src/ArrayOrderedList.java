@@ -1,10 +1,10 @@
-import java.util.Arrays;
-
 /**
- * Created by andrewsmiley on 3/10/17.
+ * Created by andrewsmiley on 03/08/17.
  */
 public class ArrayOrderedList {
+    //this is our inner array
     private Integer list[];
+    //the size (number of elements) in our inner array
     private int size;
 
     /**
@@ -71,7 +71,7 @@ public class ArrayOrderedList {
             s = 100;
         }
         this.size = 0;
-//        this.
+
         this.list = new Integer[s];
     }
 
@@ -83,6 +83,10 @@ public class ArrayOrderedList {
 
     }
 
+    /**
+     * Simple function to tell us if our array is empty or not.
+     * @return
+     */
     public boolean isEmpty() {
         return this.size == 0;
     }
@@ -132,32 +136,30 @@ public class ArrayOrderedList {
     }
 
     /**
-     * Binary search functon that calls the built-in binarySearch function from Java's Array class.
-     *
-     * @param value the value we wish to search from
-     * @return the zero-indexed index of the value we want
+     * Helper function that allows us to call our recursive binary search by specifying only the
+     * value we want to find
+     * @param value the value to find
+     * @return the index of the element we are looking for
      */
-//    public int binarySearch(Integer value) {
-//        return Arrays.binarySearch(this.list, value);
-//    }
-
-    /**
-     * Java method to perform recursive binary search. It accept an integer array * and a number and return the index of number in the array. If number doesn't * exists in array then it return -1 * * @param input * @param number * @return index of given number in array or -1 if not found
-     */
-    public int recursiveBinarySearch(int value) {
+    public int find(int value) {
         return binarySearch(this.list, 0, this.list.length - 1, value);
     }
 
     /**
-     * internal method which implement recursive binary search algorithm * * @param array * @param start * @param end * @param target * @return index of target element or -1 if not found
+     * The actual binary search function. This is plain old binary search, no need to document this one too heavily
+     * @param list the array we are searching
+     * @param start the start of the array (or subarray) to search
+     * @param end the end of the array (or subarray) to search
+     * @param value the value we want
+     * @return the index of the element we are looking for
      */
     private int binarySearch(Integer[] list, int start, int end, int value) {
         int middle = (start + end) / 2;
         this.operations++; //increase operations because we do this comparison
         if (end < start) {
-            return BaseLinkedList.VALUE_NOT_FOUND;
+            return UnorderedLinkedList.VALUE_NOT_FOUND;
         }
-        //increease operations because we do 2 comparisons
+        //increase operations because we do 2 comparisons
         this.operations++;
         this.operations++;
         if (value == list[middle]) {
@@ -169,12 +171,12 @@ public class ArrayOrderedList {
         }
     }
 
-//    Read more: http://www.java67.com/2016/10/binary-search-using-recursion-in-java.html#ixzz4b4Esf6IR
+
 
     /**
      * Function to write the contents of our list to the screen
      *
-     * @return
+     * @return the string value of our arraylist contents
      */
     @Override
     public String toString() {
@@ -208,9 +210,10 @@ public class ArrayOrderedList {
     /**
      * Delete the element residing at the given index
      *
-     * @param index
+     * @param index the index to delete
      */
-    public void deleteNth(int index) {
+    public void remove(int index) {
+//        decrease size
         this.size--;
         this.operations++; //increase operations because we nullify the element at the index
         this.list[index] = null;
@@ -221,12 +224,17 @@ public class ArrayOrderedList {
         }
     }
 
+    /**
+     * Delete a value from our list. This one finds the element using binary search and then deletes the element at that
+     * index  using the
+     * @param value The value to delete
+     */
     public void delete(int value){
-        int index = this.recursiveBinarySearch(value);
-        if(index != BaseLinkedList.VALUE_NOT_FOUND){
-            this.deleteNth(index);
-        }else{
-            System.out.println("Value "+value+" not found in "+getClass().getName()); //if it's not found, let's provide some feedback
+        //first get the vlaue
+        int index = this.find(value);
+        //make sure it exists in the list
+        if(index != UnorderedLinkedList.VALUE_NOT_FOUND){
+            this.remove(index);
         }
     }
 

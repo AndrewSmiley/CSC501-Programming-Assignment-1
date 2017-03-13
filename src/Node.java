@@ -1,7 +1,13 @@
 /**
- * Created by andrewsmiley on 3/10/17.
+ * Created by andrewsmiley on 03/08/17.
  */
 public class Node {
+
+    /**
+     *This is the value of the node (using object so we can use different types of variables with our linked lists
+     */
+    private Integer value;
+
     /**
      *This field refers to the next node in the linked list
      */
@@ -21,11 +27,6 @@ public class Node {
 
         this.value = value;
     }
-
-    /**
-     *This is the value of the node (using object so we can use different types of variables with our linked lists
-     */
-    private Integer value;
 
     /**
      * Get the next node
@@ -68,11 +69,4 @@ public class Node {
     }
 
 
-
-
-//    public int compareTo(E o) {
-//        if(this.value.compareTo(o) ){
-//
-//        }
-//    }
 }
